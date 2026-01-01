@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Copy, Check, Linkedin, FileText, User, Target } from "lucide-react";
+import { Copy, Check, Linkedin, FileText, User, Target, Sparkles } from "lucide-react";
 
 const linkedInHeadlines = [
   "Software Developer | React.js & Node.js | Jio & Google Experience | Building Scalable Web Solutions",
@@ -51,9 +50,18 @@ const ProfileContentSection = () => {
 
   return (
     <section id="profile-content" className="py-24 bg-background relative overflow-hidden">
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
+
+      <div className="absolute top-0 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-[120px] animate-pulse-soft" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
       
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -61,13 +69,28 @@ const ProfileContentSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="inline-block px-4 py-2 bg-accent text-accent-foreground rounded-full text-sm font-medium mb-6">
-            PROFESSIONAL PROFILE
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Ready-to-Use <span className="text-gradient">Content</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full text-sm font-medium mb-8"
+          >
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-foreground">PROFESSIONAL PROFILE</span>
+          </motion.div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Ready-to-Use{" "}
+            <span className="relative inline-block">
+              <span className="text-gradient">Content</span>
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-accent rounded-full origin-left"
+              />
+            </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Professionally crafted content for LinkedIn, resume, and portfolio use
           </p>
         </motion.div>
@@ -77,21 +100,23 @@ const ProfileContentSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-2 mb-8"
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
           {tabs.map((tab) => (
-            <button
+            <motion.button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 ${
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-300 ${
                 activeTab === tab.id
-                  ? "bg-primary text-primary-foreground shadow-button"
-                  : "bg-card text-muted-foreground hover:bg-accent hover:text-accent-foreground border border-border"
+                  ? "bg-gradient-accent text-primary-foreground shadow-button"
+                  : "glass text-muted-foreground hover:text-foreground"
               }`}
             >
               <tab.icon className="w-4 h-4" />
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
@@ -106,46 +131,60 @@ const ProfileContentSection = () => {
           {activeTab === "headlines" && (
             <div className="space-y-4">
               {linkedInHeadlines.map((headline, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-card rounded-xl p-5 shadow-soft border border-border flex items-start justify-between gap-4 group hover:shadow-card transition-all duration-200"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.01, x: 4 }}
+                  className="glass-strong rounded-2xl p-5 shadow-soft hover:shadow-card flex items-start justify-between gap-4 group transition-all duration-300"
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-accent-foreground font-bold text-sm">
+                  <div className="flex items-start gap-4">
+                    <span className="flex-shrink-0 w-10 h-10 bg-gradient-accent rounded-xl flex items-center justify-center text-primary-foreground font-bold shadow-button">
                       {index + 1}
                     </span>
-                    <p className="text-foreground font-medium leading-relaxed">{headline}</p>
+                    <p className="text-foreground font-medium leading-relaxed pt-1">{headline}</p>
                   </div>
-                  <button
+                  <motion.button
                     onClick={() => copyToClipboard(headline, `headline-${index}`)}
-                    className="flex-shrink-0 p-2 rounded-lg bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="flex-shrink-0 p-3 rounded-xl glass hover:bg-primary hover:text-primary-foreground transition-all duration-200"
                     title="Copy to clipboard"
                   >
                     {copiedIndex === `headline-${index}` ? (
-                      <Check className="w-4 h-4" />
+                      <Check className="w-4 h-4 text-green-500" />
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               ))}
             </div>
           )}
 
           {activeTab === "about" && (
-            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-strong rounded-2xl p-6 md:p-8 shadow-soft"
+            >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                  <Linkedin className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <Linkedin className="w-5 h-5 text-primary-foreground" />
+                  </div>
                   LinkedIn "About" Section
                 </h3>
-                <button
+                <motion.button
                   onClick={() => copyToClipboard(linkedInAbout, "about")}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
                 >
                   {copiedIndex === "about" ? (
                     <>
-                      <Check className="w-4 h-4" />
+                      <Check className="w-4 h-4 text-green-500" />
                       Copied!
                     </>
                   ) : (
@@ -154,30 +193,38 @@ const ProfileContentSection = () => {
                       Copy
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
               <div className="prose prose-slate max-w-none">
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {linkedInAbout}
                 </p>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {activeTab === "summary" && (
-            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-strong rounded-2xl p-6 md:p-8 shadow-soft"
+            >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <FileText className="w-5 h-5 text-primary-foreground" />
+                  </div>
                   Resume Professional Summary
                 </h3>
-                <button
+                <motion.button
                   onClick={() => copyToClipboard(resumeSummary, "summary")}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
                 >
                   {copiedIndex === "summary" ? (
                     <>
-                      <Check className="w-4 h-4" />
+                      <Check className="w-4 h-4 text-green-500" />
                       Copied!
                     </>
                   ) : (
@@ -186,26 +233,34 @@ const ProfileContentSection = () => {
                       Copy
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
               <p className="text-muted-foreground leading-relaxed">{resumeSummary}</p>
-            </div>
+            </motion.div>
           )}
 
           {activeTab === "objective" && (
-            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-strong rounded-2xl p-6 md:p-8 shadow-soft"
+            >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                  <Target className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-accent rounded-xl flex items-center justify-center shadow-lg">
+                    <Target className="w-5 h-5 text-primary-foreground" />
+                  </div>
                   Career Objective
                 </h3>
-                <button
+                <motion.button
                   onClick={() => copyToClipboard(careerObjective, "objective")}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass hover:bg-primary hover:text-primary-foreground transition-all duration-200 font-medium text-sm"
                 >
                   {copiedIndex === "objective" ? (
                     <>
-                      <Check className="w-4 h-4" />
+                      <Check className="w-4 h-4 text-green-500" />
                       Copied!
                     </>
                   ) : (
@@ -214,10 +269,10 @@ const ProfileContentSection = () => {
                       Copy
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
               <p className="text-muted-foreground leading-relaxed">{careerObjective}</p>
-            </div>
+            </motion.div>
           )}
         </motion.div>
       </div>
