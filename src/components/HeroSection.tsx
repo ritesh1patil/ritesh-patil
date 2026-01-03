@@ -163,37 +163,27 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="relative max-w-lg mx-auto">
-              {/* Animated Ring */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[105%] h-[105%] rounded-[3rem] border-2 border-dashed border-primary/20 animate-rotate-slow" />
-              </div>
-
+            <div className="relative max-w-md mx-auto">
               {/* Glow Effect */}
-              <div className="absolute inset-4 bg-primary/20 rounded-[3rem] blur-3xl animate-glow-pulse" />
+              <div className="absolute inset-4 bg-primary/20 rounded-3xl blur-3xl animate-glow-pulse" />
               
               {/* Background Shapes */}
               <motion.div
-                animate={{ rotate: [6, 8, 6] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-primary/20 rounded-[3rem] scale-[0.98]"
-              />
-              <motion.div
-                animate={{ rotate: [-3, -5, -3] }}
+                animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-primary/10 rounded-[3rem] scale-[0.96]"
+                className="absolute inset-0 bg-primary/20 rounded-3xl translate-x-3 translate-y-3"
               />
               
-              {/* Image Container */}
-              <div className="relative glass-strong rounded-[3rem] p-2 shadow-glow">
-                <div className="relative overflow-hidden rounded-[2.5rem]">
+              {/* Image Container - Rounded Rectangle */}
+              <div className="relative glass-strong rounded-3xl p-2 shadow-glow">
+                <div className="relative overflow-hidden rounded-2xl">
                   <img
                     src={profilePhoto}
                     alt="Ritesh Patil - Software Developer"
-                    className="w-full object-cover aspect-square"
+                    className="w-full object-cover aspect-[3/4]"
                   />
                   {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 </div>
               </div>
 
