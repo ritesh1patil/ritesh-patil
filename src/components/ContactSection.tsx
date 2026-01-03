@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Linkedin, Mail, Github, MapPin, Send, ExternalLink, Sparkles } from "lucide-react";
+import { Github, MapPin, Send, Sparkles } from "lucide-react";
+import ContactForm from "./ContactForm";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -57,7 +57,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -80,94 +80,93 @@ const ContactSection = () => {
               className="absolute bottom-8 right-8 w-32 h-32 bg-primary-foreground/10 rounded-full blur-2xl"
             />
 
-            <div className="relative p-8 md:p-12 text-center">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 }}
-                className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-4"
-              >
-                Ready to Build Something Amazing?
-              </motion.h3>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4 }}
-                className="text-primary-foreground/90 mb-10 max-w-xl mx-auto text-lg"
-              >
-                I'm actively seeking opportunities to apply my skills in web development, 
-                full-stack engineering, and software development. Let's create impact together.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 }}
-                className="flex flex-wrap justify-center gap-4 mb-12"
-              >
-                <a
-                  href="https://www.linkedin.com/in/ritesh-patil-3408a52a6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button 
-                    variant="heroOutline" 
-                    className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm group"
+            <div className="relative p-8 md:p-12">
+              <div className="grid lg:grid-cols-2 gap-10 items-start">
+                {/* Left side - Form */}
+                <div>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.3 }}
+                    className="text-2xl md:text-3xl font-bold text-primary-foreground mb-2"
                   >
-                    <Linkedin className="w-5 h-5 mr-2" />
-                    Connect on LinkedIn
-                    <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Button>
-                </a>
-                <a href="mailto:contact@riteshpatil.dev">
-                  <Button 
-                    variant="heroOutline" 
-                    className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm group"
+                    Send Me a Message
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.35 }}
+                    className="text-primary-foreground/80 mb-6"
                   >
-                    <Mail className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                    Send Email
-                  </Button>
-                </a>
-              </motion.div>
+                    Fill out the form and I'll get back to you soon.
+                  </motion.p>
+                  <ContactForm />
+                </div>
 
-              {/* Info Cards */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6 }}
-                className="grid md:grid-cols-3 gap-4"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
-                >
-                  <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <MapPin className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <p className="text-primary-foreground font-semibold">Navi Mumbai, India</p>
-                  <p className="text-primary-foreground/70 text-sm">Open to Relocation</p>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
-                >
-                  <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Send className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <p className="text-primary-foreground font-semibold">Available Now</p>
-                  <p className="text-primary-foreground/70 text-sm">Internship & Full-time</p>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
-                >
-                  <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Github className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <p className="text-primary-foreground font-semibold">Open Source</p>
-                  <p className="text-primary-foreground/70 text-sm">Check My Projects</p>
-                </motion.div>
-              </motion.div>
+                {/* Right side - Info Cards */}
+                <div className="space-y-6">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.4 }}
+                    className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4 lg:text-center"
+                  >
+                    Quick Info
+                  </motion.h3>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.5 }}
+                    className="space-y-4"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center shrink-0">
+                          <MapPin className="w-6 h-6 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <p className="text-primary-foreground font-semibold">Navi Mumbai, India</p>
+                          <p className="text-primary-foreground/70 text-sm">Open to Relocation</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center shrink-0">
+                          <Send className="w-6 h-6 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <p className="text-primary-foreground font-semibold">Available Now</p>
+                          <p className="text-primary-foreground/70 text-sm">Internship & Full-time</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                    
+                    <motion.div
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      className="bg-primary-foreground/10 rounded-2xl p-5 backdrop-blur-sm border border-primary-foreground/10 hover:border-primary-foreground/30 transition-colors"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-primary-foreground/20 rounded-xl flex items-center justify-center shrink-0">
+                          <Github className="w-6 h-6 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <p className="text-primary-foreground font-semibold">Open Source</p>
+                          <p className="text-primary-foreground/70 text-sm">Check My Projects</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
