@@ -50,7 +50,7 @@ const Footer = () => {
               <Linkedin className="w-5 h-5 text-background group-hover:scale-110 transition-transform" />
             </motion.a>
             <motion.a
-              href="mailto:contact@riteshpatil.dev"
+              href="mailto:ritesh.1personal@gmail.com"
               whileHover={{ scale: 1.1, y: -4 }}
               className="w-12 h-12 bg-background/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors duration-200 group"
             >
