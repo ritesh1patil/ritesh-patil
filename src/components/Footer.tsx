@@ -57,7 +57,7 @@ const Footer = () => {
               <Mail className="w-5 h-5 text-background group-hover:scale-110 transition-transform" />
             </motion.a>
             <motion.a
-              href="https://github.com/riteshpatil"
+              href="https://github.com/ritesh1patil"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -4 }}
