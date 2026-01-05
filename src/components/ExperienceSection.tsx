@@ -34,7 +34,7 @@ const experiences = [
   },
   {
     title: "Full Stack Developer Intern",
-    company: "Spring Jauner",
+    company: "Spring Jaunter",
     location: "Navi Mumbai",
     period: "01/2025 – 03/2025",
     type: "Internship",
