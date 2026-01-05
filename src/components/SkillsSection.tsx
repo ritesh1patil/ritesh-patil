@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Layout, Database, Server, Wrench, Users, Zap } from "lucide-react";
+import { Code2, Layout, Database, Server, Wrench, Users, Zap, Bot } from "lucide-react";
 
 const skillCategories = [
   {
@@ -21,14 +21,14 @@ const skillCategories = [
   {
     icon: Database,
     title: "Database & Tools",
-    skills: ["SQL", "MongoDB", "Git", "Linux", "MobaXterm"],
+    skills: ["SQL", "MongoDB", "Git", "Linux", "MobaXterm", "Visual Studio Code"],
     color: "from-primary to-amber-600",
     bgColor: "bg-primary/10",
   },
   {
     icon: Code2,
     title: "Programming Languages",
-    skills: ["JavaScript", "Python", "TypeScript", "SQL"],
+    skills: ["JavaScript", "Python", "TypeScript", "Java", "SQL"],
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-500/10",
   },
@@ -45,6 +45,13 @@ const skillCategories = [
     skills: ["Team Collaboration", "Problem Solving", "Communication", "Leadership"],
     color: "from-teal-500 to-cyan-500",
     bgColor: "bg-teal-500/10",
+  },
+  {
+    icon: Bot,
+    title: "AI Tools",
+    skills: ["ChatGPT", "GitHub Copilot", "Claude", "Gemini"],
+    color: "from-violet-500 to-fuchsia-500",
+    bgColor: "bg-violet-500/10",
   },
 ];
 
