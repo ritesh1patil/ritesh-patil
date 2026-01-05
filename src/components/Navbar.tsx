@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Linkedin } from "lucide-react";
+import { Menu, X, Linkedin, FileText } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -54,7 +54,17 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="/Ritesh_Resume.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="nav" size="default">
+                <FileText className="w-4 h-4 mr-2" />
+                Resume
+              </Button>
+            </a>
             <a
               href="https://www.linkedin.com/in/ritesh-patil-3408a52a6"
               target="_blank"
@@ -96,7 +106,17 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
-              <li className="pt-4 border-t border-border">
+              <li className="pt-4 border-t border-border flex flex-col gap-3">
+                <a
+                  href="/Ritesh_Resume.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="nav" className="w-full">
+                    <FileText className="w-4 h-4 mr-2" />
+                    Resume
+                  </Button>
+                </a>
                 <a
                   href="https://www.linkedin.com/in/ritesh-patil-3408a52a6"
                   target="_blank"
