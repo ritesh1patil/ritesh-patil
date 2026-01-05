@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Briefcase, GraduationCap, Sparkles, Code2, Zap } from "lucide-react";
-import profilePhoto from "@/assets/profile-photo.jpg";
+import profilePhoto from "@/assets/profile-hero.jpeg";
 
 const HeroSection = () => {
   return (
