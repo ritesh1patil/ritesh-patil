@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Github, Heart, ArrowUp } from "lucide-react";
+import { Linkedin, Mail, Github, ArrowUp } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -88,7 +88,7 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="text-background/50 text-sm flex items-center justify-center gap-1"
           >
-            Made with <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" /> by Ritesh Patil • © 2025
+            Made by Ritesh Patil • © 2025
           </motion.p>
         </div>
       </div>
