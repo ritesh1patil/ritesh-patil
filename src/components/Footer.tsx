@@ -88,7 +88,7 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="text-background/50 text-sm flex items-center justify-center gap-1"
           >
-            Made by Ritesh Patil • © 2025
+            Made by Ritesh Patil • © 2026
           </motion.p>
         </div>
       </div>
