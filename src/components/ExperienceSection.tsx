@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Briefcase, Calendar, MapPin, ArrowUpRight, Sparkles, Building2, Rocket, Star, Zap } from "lucide-react";
+import { useRef } from "react";
+import { Briefcase, Calendar, MapPin, ArrowUpRight, Sparkles } from "lucide-react";
 
 const experiences = [
   {
@@ -18,9 +18,7 @@ const experiences = [
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-500/10",
     iconBg: "bg-gradient-to-br from-blue-500 to-blue-600",
-    buildingColor: "#4285F4",
     year: "2025",
-    icon: Star,
   },
   {
     title: "Data Science Intern",
@@ -36,9 +34,7 @@ const experiences = [
     color: "from-primary to-amber-600",
     bgColor: "bg-primary/10",
     iconBg: "bg-gradient-to-br from-primary to-amber-600",
-    buildingColor: "#F59E0B",
     year: "2025",
-    icon: Zap,
   },
   {
     title: "Full Stack Developer Intern",
@@ -54,9 +50,7 @@ const experiences = [
     color: "from-emerald-500 to-emerald-600",
     bgColor: "bg-emerald-500/10",
     iconBg: "bg-gradient-to-br from-emerald-500 to-emerald-600",
-    buildingColor: "#10B981",
     year: "2025",
-    icon: Rocket,
   },
   {
     title: "Software Developer Intern",
@@ -72,281 +66,13 @@ const experiences = [
     color: "from-primary to-amber-600",
     bgColor: "bg-primary/10",
     iconBg: "bg-gradient-to-br from-primary to-amber-600",
-    buildingColor: "#F59E0B",
     year: "2024",
-    icon: Building2,
   },
 ];
-
-// Isometric Building Component
-const IsometricBuilding = ({ 
-  color, 
-  index, 
-  isActive, 
-  onClick,
-  icon: Icon 
-}: { 
-  color: string; 
-  index: number; 
-  isActive: boolean;
-  onClick: () => void;
-  icon: React.ElementType;
-}) => {
-  const heights = [80, 100, 70, 90];
-  const height = heights[index % heights.length];
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50, rotateX: -20 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      viewport={{ once: true }}
-      onClick={onClick}
-      className="cursor-pointer group relative"
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      {/* Building Shadow */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-black/20 blur-md rounded-full"
-        style={{ width: 60, height: 20 }}
-        animate={{ 
-          scale: isActive ? 1.2 : 1,
-          opacity: isActive ? 0.4 : 0.2 
-        }}
-      />
-      
-      {/* Main Building Structure */}
-      <motion.div
-        className="relative"
-        animate={{ 
-          y: isActive ? -10 : 0,
-          scale: isActive ? 1.1 : 1
-        }}
-        whileHover={{ y: -5, scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        {/* Building Base - Isometric Face Left */}
-        <div 
-          className="absolute"
-          style={{
-            width: 50,
-            height: height,
-            background: `linear-gradient(135deg, ${color}dd, ${color}99)`,
-            transform: "skewY(-30deg)",
-            transformOrigin: "bottom left",
-            left: 0,
-            bottom: 20,
-            borderRadius: "4px 4px 0 0",
-            boxShadow: isActive ? `0 0 30px ${color}60` : "none",
-          }}
-        />
-        
-        {/* Building Base - Isometric Face Right */}
-        <div 
-          className="absolute"
-          style={{
-            width: 50,
-            height: height,
-            background: `linear-gradient(135deg, ${color}99, ${color}66)`,
-            transform: "skewY(30deg)",
-            transformOrigin: "bottom right",
-            right: 0,
-            bottom: 20,
-            borderRadius: "4px 4px 0 0",
-          }}
-        />
-        
-        {/* Building Top - Isometric Roof */}
-        <div 
-          className="absolute"
-          style={{
-            width: 70,
-            height: 40,
-            background: `linear-gradient(to right, ${color}, ${color}cc)`,
-            transform: "rotateX(60deg) rotateZ(45deg)",
-            transformOrigin: "center",
-            left: "50%",
-            marginLeft: -35,
-            bottom: height + 15,
-            borderRadius: "4px",
-          }}
-        />
-        
-        {/* Windows Pattern */}
-        <div className="absolute left-1 bottom-24 grid grid-cols-2 gap-1">
-          {[...Array(Math.floor(height / 25))].map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-4 h-3 bg-white/40 rounded-sm"
-              animate={{ 
-                opacity: isActive ? [0.4, 0.8, 0.4] : 0.4 
-              }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity, 
-                delay: i * 0.2 
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Icon on top */}
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 p-2 rounded-full"
-          style={{ 
-            bottom: height + 45,
-            background: color,
-            boxShadow: `0 0 20px ${color}80`
-          }}
-          animate={{ 
-            y: isActive ? [0, -5, 0] : 0 
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <Icon className="w-5 h-5 text-white" />
-        </motion.div>
-        
-        {/* Glow effect when active */}
-        {isActive && (
-          <motion.div
-            className="absolute inset-0 rounded-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            style={{
-              background: `radial-gradient(circle at center, ${color}40, transparent 70%)`,
-              filter: "blur(10px)",
-            }}
-          />
-        )}
-      </motion.div>
-      
-      {/* Company Label */}
-      <motion.div
-        className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold"
-        style={{ bottom: -5 }}
-        animate={{ opacity: isActive ? 1 : 0.7 }}
-      >
-        <span className="px-2 py-1 glass-strong rounded-full text-foreground">
-          {experiences[index].year}
-        </span>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-// Isometric Road Path
-const IsometricRoad = () => {
-  return (
-    <svg 
-      viewBox="0 0 1000 200" 
-      className="absolute bottom-8 left-0 right-0 w-full h-32 md:h-40"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        {/* Road gradient */}
-        <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="hsl(var(--muted))" />
-          <stop offset="50%" stopColor="hsl(var(--muted-foreground))" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="hsl(var(--muted))" />
-        </linearGradient>
-        
-        {/* Dashed line pattern */}
-        <pattern id="dashPattern" patternUnits="userSpaceOnUse" width="40" height="10">
-          <motion.rect 
-            x="0" 
-            y="4" 
-            width="20" 
-            height="2" 
-            fill="hsl(var(--primary))"
-            animate={{ x: [0, 40] }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          />
-        </pattern>
-      </defs>
-      
-      {/* Main Road Surface */}
-      <motion.path
-        d="M 0,150 C 100,150 150,100 250,100 S 400,150 500,150 S 650,100 750,100 S 900,150 1000,150"
-        fill="none"
-        stroke="url(#roadGradient)"
-        strokeWidth="50"
-        strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        viewport={{ once: true }}
-      />
-      
-      {/* Road Center Line (animated dashes) */}
-      <motion.path
-        d="M 0,150 C 100,150 150,100 250,100 S 400,150 500,150 S 650,100 750,100 S 900,150 1000,150"
-        fill="none"
-        stroke="url(#dashPattern)"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeDasharray="15 10"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeOut", delay: 0.5 }}
-        viewport={{ once: true }}
-      />
-      
-      {/* Glowing edge */}
-      <motion.path
-        d="M 0,150 C 100,150 150,100 250,100 S 400,150 500,150 S 650,100 750,100 S 900,150 1000,150"
-        fill="none"
-        stroke="hsl(var(--primary))"
-        strokeWidth="2"
-        strokeLinecap="round"
-        opacity="0.5"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        transition={{ duration: 2, ease: "easeOut", delay: 0.3 }}
-        viewport={{ once: true }}
-        style={{ filter: "blur(4px)" }}
-      />
-    </svg>
-  );
-};
-
-// Floating Particles Component
-const FloatingParticles = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(15)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-primary/40"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section id="experience" className="py-24 bg-background relative overflow-hidden">
@@ -362,15 +88,13 @@ const ExperienceSection = () => {
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-accent/20 rounded-full blur-[120px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
       
-      <FloatingParticles />
-      
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -393,165 +117,176 @@ const ExperienceSection = () => {
               />
             </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-4">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Building real-world experience through impactful internships at leading tech companies
           </p>
-          <p className="text-sm text-primary font-medium">
-            ✨ Click on buildings to explore each milestone
-          </p>
         </motion.div>
 
-        {/* Isometric Journey Visualization */}
-        <div className="relative max-w-5xl mx-auto mb-16" style={{ perspective: "1000px" }}>
-          {/* Buildings Container */}
-          <div className="relative h-64 md:h-72 flex items-end justify-around px-4 md:px-12">
+        <div className="relative max-w-5xl mx-auto">
+          {/* Main Timeline Line with Gradient */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 md:transform md:-translate-x-1/2">
+            <motion.div 
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute inset-0 bg-gradient-to-b from-primary via-accent to-primary/30 origin-top rounded-full"
+            />
+            <motion.div 
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+              className="absolute inset-0 bg-gradient-to-b from-primary via-accent to-primary/30 blur-md origin-top opacity-60"
+            />
+          </div>
+
+          <div className="space-y-16">
             {experiences.map((exp, index) => (
-              <IsometricBuilding
+              <motion.div
                 key={index}
-                color={exp.buildingColor}
-                index={index}
-                isActive={activeIndex === index}
-                onClick={() => setActiveIndex(index)}
-                icon={exp.icon}
-              />
+                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: index * 0.2, ease: "easeOut" }}
+                className={`relative flex flex-col md:flex-row gap-8 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                {/* Enhanced Timeline Node */}
+                <div className="absolute left-8 md:left-1/2 w-16 h-16 transform -translate-x-1/2 md:-translate-x-1/2 z-10 -translate-y-2">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
+                    className="relative w-full h-full"
+                  >
+                    {/* Outer Glow Ring */}
+                    <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${exp.color} opacity-30 animate-ping`} style={{ animationDuration: "3s" }} />
+                    
+                    {/* Main Node */}
+                    <div className={`relative w-full h-full rounded-full ${exp.iconBg} flex items-center justify-center shadow-lg border-4 border-background`}>
+                      <Briefcase className="w-6 h-6 text-white" />
+                    </div>
+                    
+                    {/* Year Badge */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: index * 0.2 + 0.5 }}
+                      className={`absolute -bottom-8 left-1/2 -translate-x-1/2 px-3 py-1 glass-strong rounded-full text-xs font-bold text-foreground whitespace-nowrap`}
+                    >
+                      {exp.year}
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Connecting Line from Node to Card */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.2 + 0.4 }}
+                  className={`hidden md:block absolute top-6 w-8 h-0.5 bg-gradient-to-r ${exp.color} ${
+                    index % 2 === 0 
+                      ? "left-[calc(50%+2rem)] origin-left" 
+                      : "right-[calc(50%+2rem)] origin-right"
+                  }`}
+                />
+
+                {/* Content Card */}
+                <div className={`ml-20 md:ml-0 md:w-[calc(50%-4rem)] ${index % 2 === 0 ? "md:pr-4" : "md:pl-4"}`}>
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -8 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative glass-strong rounded-3xl p-6 shadow-soft hover:shadow-card transition-all duration-500 group overflow-hidden"
+                  >
+                    {/* Card Background Gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                    
+                    {/* Sparkle Effect */}
+                    <motion.div
+                      initial={{ opacity: 0, rotate: 0 }}
+                      whileHover={{ opacity: 1, rotate: 180 }}
+                      className="absolute top-4 right-4"
+                    >
+                      <Sparkles className="w-5 h-5 text-primary/40" />
+                    </motion.div>
+
+                    {/* Header */}
+                    <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-14 h-14 rounded-2xl ${exp.iconBg} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                          <Briefcase className="w-7 h-7 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{exp.title}</h3>
+                          <p className="text-primary font-semibold flex items-center gap-1">
+                            {exp.company}
+                            <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                          </p>
+                        </div>
+                      </div>
+                      <motion.span 
+                        whileHover={{ scale: 1.05 }}
+                        className={`px-4 py-1.5 ${exp.bgColor} rounded-full text-xs font-bold text-foreground border border-current/10`}
+                      >
+                        {exp.type}
+                      </motion.span>
+                    </div>
+
+                    {/* Meta Info */}
+                    <div className="flex flex-wrap items-center gap-3 mb-5">
+                      <div className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                        <Calendar className="w-4 h-4 text-primary" />
+                        <span className="font-medium">{exp.period}</span>
+                      </div>
+                      <div className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                        <MapPin className="w-4 h-4 text-primary" />
+                        <span className="font-medium">{exp.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Description with Enhanced List */}
+                    <ul className="space-y-3">
+                      {exp.description.map((item, i) => (
+                        <motion.li 
+                          key={i} 
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ delay: index * 0.2 + 0.5 + i * 0.1 }}
+                          className="flex items-start gap-3 text-muted-foreground group-hover:text-foreground/80 transition-colors"
+                        >
+                          <span className={`w-2.5 h-2.5 bg-gradient-to-r ${exp.color} rounded-full mt-1.5 flex-shrink-0 shadow-sm`} />
+                          <span className="leading-relaxed text-sm">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+
+                    {/* Bottom Gradient Line */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileHover={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.color} origin-left`}
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Spacer for alternating layout */}
+                <div className="hidden md:block md:w-[calc(50%-4rem)]" />
+              </motion.div>
             ))}
           </div>
-          
-          {/* Isometric Road */}
-          <IsometricRoad />
-          
-          {/* Journey Progress Indicator */}
+
+          {/* Journey End Marker */}
           <motion.div
-            className="absolute bottom-2 left-0 right-0 flex justify-center gap-2"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
+            className="absolute left-8 md:left-1/2 -bottom-8 transform -translate-x-1/2"
           >
-            {experiences.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === index 
-                    ? 'w-6 bg-primary' 
-                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              />
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Selected Experience Detail Card */}
-        <motion.div
-          key={activeIndex}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
-        >
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            transition={{ duration: 0.3 }}
-            className="relative glass-strong rounded-3xl p-8 shadow-soft hover:shadow-card transition-all duration-500 group overflow-hidden"
-          >
-            {/* Card Background Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${experiences[activeIndex].color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
-            
-            {/* Sparkle Effect */}
-            <motion.div
-              initial={{ opacity: 0, rotate: 0 }}
-              animate={{ opacity: 1, rotate: 180 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute top-6 right-6"
-            >
-              <Sparkles className="w-6 h-6 text-primary/40" />
-            </motion.div>
-
-            {/* Header */}
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <motion.div 
-                  className={`w-16 h-16 rounded-2xl ${experiences[activeIndex].iconBg} flex items-center justify-center shadow-lg`}
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Briefcase className="w-8 h-8 text-white" />
-                </motion.div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">{experiences[activeIndex].title}</h3>
-                  <p className="text-primary font-semibold text-lg flex items-center gap-1">
-                    {experiences[activeIndex].company}
-                    <ArrowUpRight className="w-5 h-5" />
-                  </p>
-                </div>
-              </div>
-              <motion.span 
-                whileHover={{ scale: 1.05 }}
-                className={`px-5 py-2 ${experiences[activeIndex].bgColor} rounded-full text-sm font-bold text-foreground border border-current/10`}
-              >
-                {experiences[activeIndex].type}
-              </motion.span>
+            <div className="relative">
+              <div className="w-6 h-6 bg-gradient-to-br from-primary to-accent rounded-full border-4 border-background shadow-glow" />
+              <div className="absolute inset-0 w-6 h-6 bg-primary/50 rounded-full animate-ping" style={{ animationDuration: "2s" }} />
             </div>
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 mb-6">
-              <div className="flex items-center gap-2 px-5 py-2.5 glass rounded-xl text-sm text-foreground">
-                <Calendar className="w-5 h-5 text-primary" />
-                <span className="font-medium">{experiences[activeIndex].period}</span>
-              </div>
-              <div className="flex items-center gap-2 px-5 py-2.5 glass rounded-xl text-sm text-foreground">
-                <MapPin className="w-5 h-5 text-primary" />
-                <span className="font-medium">{experiences[activeIndex].location}</span>
-              </div>
-            </div>
-
-            {/* Description with Enhanced List */}
-            <ul className="space-y-4">
-              {experiences[activeIndex].description.map((item, i) => (
-                <motion.li 
-                  key={i} 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-4 text-foreground/80"
-                >
-                  <span className={`w-3 h-3 bg-gradient-to-r ${experiences[activeIndex].color} rounded-full mt-1.5 flex-shrink-0 shadow-sm`} />
-                  <span className="leading-relaxed">{item}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* Bottom Gradient Line */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${experiences[activeIndex].color} origin-left`}
-            />
           </motion.div>
-        </motion.div>
-
-        {/* Navigation Arrows */}
-        <div className="flex justify-center gap-4 mt-8">
-          <motion.button
-            onClick={() => setActiveIndex(prev => prev === 0 ? experiences.length - 1 : prev - 1)}
-            className="px-6 py-3 glass-strong rounded-xl font-medium text-foreground hover:bg-primary/10 transition-all"
-            whileHover={{ scale: 1.05, x: -5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            ← Previous
-          </motion.button>
-          <motion.button
-            onClick={() => setActiveIndex(prev => prev === experiences.length - 1 ? 0 : prev + 1)}
-            className="px-6 py-3 glass-strong rounded-xl font-medium text-foreground hover:bg-primary/10 transition-all"
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Next →
-          </motion.button>
         </div>
       </div>
     </section>
