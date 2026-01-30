@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -9,10 +10,19 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [showFullTitle, setShowFullTitle] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowFullTitle(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Helmet>
-        <title>Ritesh Patil | Software Developer & Full Stack Engineer</title>
+        <title>{showFullTitle ? "Ritesh Patil | Software Developer & Full Stack Engineer" : "Ritesh Patil | Portfolio"}</title>
         <meta
           name="description"
           content="Ritesh Patil - Software Developer specializing in React.js, Node.js, and full-stack development. Computer Engineering student with experience at Jio Platforms & Google. Open to opportunities."
