@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Linkedin, FileText } from "lucide-react";
 
@@ -55,12 +56,12 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:flex items-center gap-3">
-            <a href="/resume">
+            <Link to="/resume">
               <Button variant="nav" size="default">
                 <FileText className="w-4 h-4 mr-2" />
                 Resume
               </Button>
-            </a>
+            </Link>
             <a
               href="https://www.linkedin.com/in/ritesh-patil-3408a52a6"
               target="_blank"
@@ -103,12 +104,12 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-4 border-t border-border flex flex-col gap-3">
-                <a href="/resume">
+                <Link to="/resume" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button variant="nav" className="w-full">
                     <FileText className="w-4 h-4 mr-2" />
                     Resume
                   </Button>
-                </a>
+                </Link>
                 <a
                   href="https://www.linkedin.com/in/ritesh-patil-3408a52a6"
                   target="_blank"
