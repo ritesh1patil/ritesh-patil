@@ -55,11 +55,7 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="/Ritesh_Resume.png"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="/resume">
               <Button variant="nav" size="default">
                 <FileText className="w-4 h-4 mr-2" />
                 Resume
@@ -107,11 +103,7 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-4 border-t border-border flex flex-col gap-3">
-                <a
-                  href="/Ritesh_Resume.png"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="/resume">
                   <Button variant="nav" className="w-full">
                     <FileText className="w-4 h-4 mr-2" />
                     Resume
