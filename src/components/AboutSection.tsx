@@ -112,7 +112,7 @@ const AboutSection = () => {
                   <h3 className="text-lg font-semibold text-foreground mb-1">Education</h3>
                   <p className="text-foreground font-bold text-xl">B.E. Computer Engineering</p>
                   <p className="text-muted-foreground">Mumbai University</p>
-                  <p className="text-muted-foreground">CSMIT • Expected 2026</p>
+                  <p className="text-muted-foreground">CSMIT • Graduated 2026</p>
                 </div>
               </div>
             </motion.div>
