@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import resumeAsset from "@/assets/Ritesh_Resume.pdf.asset.json";
+
+const resumeUrl = "/Ritesh_Resume.pdf";
 
 const Resume = () => {
   const navigate = useNavigate();
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = resumeAsset.url;
+    link.href = resumeUrl;
     link.download = "Ritesh_Patil_Resume.pdf";
     document.body.appendChild(link);
     link.click();
@@ -42,7 +43,7 @@ const Resume = () => {
       {/* Resume Display - PDF */}
       <div className="flex-1 pt-20 pb-8 px-4 h-screen">
         <iframe
-          src={resumeAsset.url}
+          src={resumeUrl}
           title="Ritesh Patil Resume"
           className="w-full h-full max-w-5xl mx-auto rounded-lg shadow-card border border-border"
         />
