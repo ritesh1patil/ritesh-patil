@@ -61,7 +61,7 @@ const AboutSection = () => {
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
-              I'm a driven Computer Engineering student at Chhatrapati Shivaji Maharaj Institute of Technology, 
+              I'm a driven Computer Engineering graduate from Chhatrapati Shivaji Maharaj Institute of Technology, 
               passionate about creating impactful digital experiences. With hands-on experience at industry leaders 
               like Jio Platforms Limited and recognition as a Google Student Ambassador, I bring a unique blend of 
               technical expertise and leadership skills.
@@ -112,7 +112,7 @@ const AboutSection = () => {
                   <h3 className="text-lg font-semibold text-foreground mb-1">Education</h3>
                   <p className="text-foreground font-bold text-xl">B.E. Computer Engineering</p>
                   <p className="text-muted-foreground">Mumbai University</p>
-                  <p className="text-muted-foreground">CSMIT • Expected 2026</p>
+                  <p className="text-muted-foreground">CSMIT • Graduated 2026</p>
                 </div>
               </div>
             </motion.div>

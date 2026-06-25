@@ -25,7 +25,7 @@ const Index = () => {
         <title>{showFullTitle ? "Ritesh Patil | Software Developer & Full Stack Engineer" : "Ritesh Patil | Portfolio"}</title>
         <meta
           name="description"
-          content="Ritesh Patil - Software Developer specializing in React.js, Node.js, and full-stack development. Computer Engineering student with experience at Jio Platforms & Google. Open to opportunities."
+          content="Ritesh Patil - Software Developer specializing in React.js, Node.js, and full-stack development. B.E. Computer Engineering graduate (2026) with experience at Jio Platforms & Google. Open to opportunities."
         />
         <meta
           name="keywords"

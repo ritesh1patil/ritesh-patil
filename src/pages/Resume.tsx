@@ -2,13 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Download, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+const resumeUrl = "/Ritesh_Resume.pdf";
+
 const Resume = () => {
   const navigate = useNavigate();
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/Ritesh_Resume.png";
-    link.download = "Ritesh_Patil_Resume.png";
+    link.href = resumeUrl;
+    link.download = "Ritesh_Patil_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -38,12 +40,12 @@ const Resume = () => {
         </div>
       </div>
 
-      {/* Resume Display */}
-      <div className="flex-1 flex items-center justify-center pt-20 pb-8 px-4">
-        <img
-          src="/Ritesh_Resume.png"
-          alt="Ritesh Patil Resume"
-          className="max-w-full max-h-[calc(100vh-120px)] object-contain shadow-card rounded-lg"
+      {/* Resume Display - PDF */}
+      <div className="flex-1 pt-20 pb-8 px-4 h-screen">
+        <iframe
+          src={resumeUrl}
+          title="Ritesh Patil Resume"
+          className="w-full h-full max-w-5xl mx-auto rounded-lg shadow-card border border-border"
         />
       </div>
     </div>

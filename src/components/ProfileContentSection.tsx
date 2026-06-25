@@ -5,13 +5,13 @@ import { Copy, Check, Linkedin, FileText, User, Target, Sparkles } from "lucide-
 
 const linkedInHeadlines = [
   "Software Developer | React.js & Node.js | Jio & Google Experience | Building Scalable Web Solutions",
-  "Full Stack Developer | Computer Engineering Student | Former Jio Intern | Open to Opportunities",
+  "Full Stack Developer | B.E. Computer Engineering (2026) | Former Jio Intern | Open to Opportunities",
   "Frontend Developer | React.js Specialist | Google Student Ambassador | Passionate Problem Solver",
   "Web Developer | B.E. Computer Engineering | Jio Platforms Alum | Turning Ideas into Code",
   "Software Engineer | Full Stack | Data Science Enthusiast | Ready to Build the Future of Tech",
 ];
 
-const linkedInAbout = `I'm a driven Computer Engineering student at Mumbai University with a proven track record of delivering impactful software solutions. My journey spans from developing responsive React.js interfaces at Jio Platforms Limited to representing Google as a Student Ambassador on campus.
+const linkedInAbout = `I'm a driven Computer Engineering graduate from Mumbai University with a proven track record of delivering impactful software solutions. My journey spans from developing responsive React.js interfaces at Jio Platforms Limited to representing Google as a Student Ambassador on campus.
 
 What sets me apart:
 • Hands-on experience building production-ready web applications using React.js, Node.js, and modern JavaScript frameworks
@@ -19,11 +19,11 @@ What sets me apart:
 • Strong foundation in both frontend development and backend API integration
 • Passionate about writing clean, maintainable code that solves real problems
 
-Currently pursuing my B.E. in Computer Engineering (Expected 2026), I'm actively seeking opportunities where I can contribute my technical skills while continuing to grow as a developer. Whether it's crafting pixel-perfect UIs, optimizing application performance, or building scalable backend solutions—I'm ready for the challenge.
+Graduated with my B.E. in Computer Engineering (2026), I'm actively seeking opportunities where I can contribute my technical skills while continuing to grow as a developer. Whether it's crafting pixel-perfect UIs, optimizing application performance, or building scalable backend solutions—I'm ready for the challenge.
 
 Let's connect and explore how I can add value to your team.`;
 
-const resumeSummary = `Results-driven Software Developer with hands-on experience at Jio Platforms Limited and recognition as a Google Student Ambassador. Proficient in React.js, Node.js, JavaScript, and full-stack development with a strong foundation in building responsive, user-centric web applications. Demonstrated ability to integrate APIs, implement database operations, and deliver scalable solutions in collaborative team environments. Currently pursuing B.E. in Computer Engineering from Mumbai University (Expected 2026). Eager to leverage technical expertise and problem-solving skills to contribute to innovative technology solutions at leading organizations.`;
+const resumeSummary = `Results-driven Software Developer with hands-on experience at Jio Platforms Limited and recognition as a Google Student Ambassador. Proficient in React.js, Node.js, JavaScript, and full-stack development with a strong foundation in building responsive, user-centric web applications. Demonstrated ability to integrate APIs, implement database operations, and deliver scalable solutions in collaborative team environments. Graduated with B.E. in Computer Engineering from Mumbai University (2026). Eager to leverage technical expertise and problem-solving skills to contribute to innovative technology solutions at leading organizations.`;
 
 const careerObjective = `To secure a challenging position as a Software Developer at a top global technology company where I can apply my skills in web development, full-stack engineering, and problem-solving while contributing to innovative projects that create meaningful impact. Seeking opportunities to grow professionally, collaborate with talented teams, and continuously enhance my technical expertise in a dynamic environment.`;
 
