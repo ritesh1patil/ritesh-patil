@@ -61,7 +61,7 @@ const AboutSection = () => {
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
-              I'm a driven Computer Engineering student at Chhatrapati Shivaji Maharaj Institute of Technology, 
+              I'm a driven Computer Engineering graduate from Chhatrapati Shivaji Maharaj Institute of Technology, 
               passionate about creating impactful digital experiences. With hands-on experience at industry leaders 
               like Jio Platforms Limited and recognition as a Google Student Ambassador, I bring a unique blend of 
               technical expertise and leadership skills.

@@ -102,7 +102,7 @@ const HeroSection = () => {
               transition={{ delay: 0.4 }}
               className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-xl"
             >
-              Passionate Computer Engineering student building impactful web applications. 
+              Passionate Computer Engineering graduate building impactful web applications. 
               From <span className="text-foreground font-medium">Jio</span> to <span className="text-foreground font-medium">Google</span>, I transform ideas into elegant, user-centric solutions.
             </motion.p>
 
