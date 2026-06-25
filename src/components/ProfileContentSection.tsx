@@ -5,7 +5,7 @@ import { Copy, Check, Linkedin, FileText, User, Target, Sparkles } from "lucide-
 
 const linkedInHeadlines = [
   "Software Developer | React.js & Node.js | Jio & Google Experience | Building Scalable Web Solutions",
-  "Full Stack Developer | Computer Engineering Student | Former Jio Intern | Open to Opportunities",
+  "Full Stack Developer | B.E. Computer Engineering (2026) | Former Jio Intern | Open to Opportunities",
   "Frontend Developer | React.js Specialist | Google Student Ambassador | Passionate Problem Solver",
   "Web Developer | B.E. Computer Engineering | Jio Platforms Alum | Turning Ideas into Code",
   "Software Engineer | Full Stack | Data Science Enthusiast | Ready to Build the Future of Tech",
