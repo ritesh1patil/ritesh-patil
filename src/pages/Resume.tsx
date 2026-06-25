@@ -17,10 +17,10 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       {/* Header with actions */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md shadow-soft">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="shrink-0 bg-card/90 backdrop-blur-md shadow-soft">
+        <div className="container mx-auto px-6 py-3 flex items-center justify-between">
           <Button
             variant="ghost"
             onClick={() => navigate(-1)}
@@ -40,12 +40,12 @@ const Resume = () => {
         </div>
       </div>
 
-      {/* Resume Display - PDF */}
-      <div className="flex-1 pt-20 pb-8 px-4 h-screen">
+      {/* Resume Display - PDF fills remaining viewport */}
+      <div className="flex-1 min-h-0">
         <iframe
           src={resumeUrl}
           title="Ritesh Patil Resume"
-          className="w-full h-full max-w-5xl mx-auto rounded-lg shadow-card border border-border"
+          className="w-full h-full bg-card"
         />
       </div>
     </div>
